@@ -15,9 +15,9 @@ public enum MasterTypeEnum {
 
     FULL_TIME_ACADEMIC(1, "全日制学硕"),
 
-    PART_FULL_TIME_ACADEMIC(2, "非全日制学硕"),
+    PART_TIME_ACADEMIC(2, "非全日制学硕"),
 
-    FULL_TIME_PROFESSIONAL(3, "全日制专硕"),
+    FULL_PROFESSIONAL(3, "全日制专硕"),
 
     PART_TIME_PROFESSIONAL(4, "非全日制专硕"),
 

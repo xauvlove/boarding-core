@@ -1,5 +1,6 @@
 package com.boarding.base.dal;
 
+import com.boarding.base.enums.LearningModeEnum;
 import com.boarding.base.enums.MasterTypeEnum;
 
 import java.util.Date;
@@ -96,6 +97,7 @@ public class RecruitmentDO {
     /**
      * 学习方式
      * 全日制、非全日制
+     *  @see LearningModeEnum
      */
     private Integer learningMode;
 

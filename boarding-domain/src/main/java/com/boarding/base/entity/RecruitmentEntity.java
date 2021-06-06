@@ -1,5 +1,6 @@
 package com.boarding.base.entity;
 
+import com.boarding.base.enums.LearningModeEnum;
 import com.boarding.base.enums.MasterTypeEnum;
 
 import java.util.Date;
@@ -96,6 +97,7 @@ public class RecruitmentEntity {
     /**
      * 学习方式
      * 全日制、非全日制
+     * @see LearningModeEnum
      */
     private Integer learningMode;
 
