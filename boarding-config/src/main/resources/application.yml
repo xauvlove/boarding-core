@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: prod
+
+--- # prod 开发环境
+spring:
+  profiles: prod
+  application:
+    name: boarding-core
+  # mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/boarding
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+server:
+  port: 8077
