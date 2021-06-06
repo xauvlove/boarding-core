@@ -1,14 +1,17 @@
-package com.boarding;
+package com.boarding.base;
+
+import lombok.Data;
 
 import java.util.Date;
 
 /**
  * @Author ling yue
- * @Date 2021/6/6 下午5:42
- * @Pkg com.boarding
+ * @Date 2021/6/6 下午5:50
+ * @Pkg com.boarding.base
  * @Desc description
  */
-public class UniversityDO {
+@Data
+public class UniversityEntity {
 
     private Long id;
 
