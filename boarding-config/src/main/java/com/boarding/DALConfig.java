@@ -15,6 +15,4 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement(proxyTargetClass = true)
 @MapperScan("com.boarding.base.dao")
-public class DALConfig {
-
-}
+public class DALConfig {}

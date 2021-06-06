@@ -11,5 +11,4 @@ import org.springframework.context.annotation.Import;
  */
 @EnableAspectJAutoProxy(exposeProxy = true)
 @Import(DALConfig.class)
-public class CommonConfig {
-}
+public class CommonConfig {}
