@@ -10,11 +10,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @Date 2021/6/6 下午6:00
  * @Pkg com.boarding
  * @Desc description
+ * mybatis 配置文件
  */
 @Configuration
 @EnableTransactionManagement(proxyTargetClass = true)
 @MapperScan("com.boarding.base.dao")
-@ComponentScan("com.boarding")
 public class DALConfig {
 
 }
