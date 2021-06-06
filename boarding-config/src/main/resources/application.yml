@@ -9,7 +9,7 @@ spring:
     name: boarding-core
   # mysql
   datasource:
-    url: jdbc:mysql://localhost:3306/boarding
+    url: jdbc:mysql://116.62.124.121:3306/boarding
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
@@ -17,6 +17,7 @@ spring:
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mybatis.boarding
 
 server:
   port: 8077

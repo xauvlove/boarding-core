@@ -4,10 +4,11 @@
 <mapper namespace="com.boarding.base.dao.UniversityDAO">
 
     <sql id="tableName">
+        bd_university
     </sql>
 
-    <sql id="allColumn">
-    </sql>
-
-
+    <select id="query" resultType="com.boarding.base.dal.UniversityDO">
+        select * from
+        <include refid="tableName"></include>
+    </select>
 </mapper>
