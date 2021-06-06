@@ -11,4 +11,10 @@
         select * from
         <include refid="tableName"></include>
     </select>
+
+    <select id="queryOne" resultType="com.boarding.base.dal.UniversityDO">
+        select * from
+        <include refid="tableName"></include>
+        limit 1
+    </select>
 </mapper>

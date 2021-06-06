@@ -11,5 +11,10 @@
 
     <artifactId>boarding-biz</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.boarding</groupId>
+            <artifactId>boarding-domain</artifactId>
+        </dependency>
+    </dependencies>
 </project>

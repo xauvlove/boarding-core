@@ -12,4 +12,6 @@ import java.util.List;
 public interface UniversityDAO {
 
     List<UniversityDO> query();
+
+    UniversityDO queryOne();
 }

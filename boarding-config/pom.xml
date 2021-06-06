@@ -16,6 +16,36 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.boarding</groupId>
+            <artifactId>boarding-api</artifactId>
+            <version>${boarding-api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.boarding</groupId>
+            <artifactId>boarding-biz</artifactId>
+            <version>${boarding-biz.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.boarding</groupId>
+            <artifactId>boarding-domain</artifactId>
+            <version>${boarding-domain.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.boarding</groupId>
+            <artifactId>boarding-infrastructure</artifactId>
+            <version>${boarding-infrastructure.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.boarding</groupId>
+            <artifactId>boarding-domain</artifactId>
+            <version>${boarding-domain.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

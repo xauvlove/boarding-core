@@ -19,12 +19,55 @@
     </parent>
     <groupId>com.boarding</groupId>
     <artifactId>boarding-core</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${boarding-core.version}</version>
     <name>boarding-core</name>
     <description>boarding</description>
     <properties>
         <java.version>1.8</java.version>
+        <boarding-core.version>1.0.0-SNAPSHOT</boarding-core.version>
+        <boarding-api.version>1.0.0-SNAPSHOT</boarding-api.version>
+        <boarding-biz.version>1.0.0-SNAPSHOT</boarding-biz.version>
+        <boarding-domain.version>1.0.0-SNAPSHOT</boarding-domain.version>
+        <boarding-web.version>1.0.0-SNAPSHOT</boarding-web.version>
+        <boarding-config.version>1.0.0-SNAPSHOT</boarding-config.version>
+        <boarding-infrastructure.version>1.0.0-SNAPSHOT</boarding-infrastructure.version>
     </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.boarding</groupId>
+                <artifactId>boarding-biz</artifactId>
+                <version>${boarding-biz.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.boarding</groupId>
+                <artifactId>boarding-api</artifactId>
+                <version>${boarding-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.boarding</groupId>
+                <artifactId>boarding-config</artifactId>
+                <version>${boarding-config.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.boarding</groupId>
+                <artifactId>boarding-infrastructure</artifactId>
+                <version>${boarding-infrastructure.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.boarding</groupId>
+                <artifactId>boarding-domain</artifactId>
+                <version>${boarding-domain.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -53,22 +96,5 @@
             </exclusions>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

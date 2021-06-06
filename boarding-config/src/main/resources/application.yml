@@ -12,12 +12,12 @@ spring:
     url: jdbc:mysql://116.62.124.121:3306/boarding
     username: root
     password: 123456
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
+  mapper-locations: classpath:mybatis.boarding/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  mapper-locations: classpath:mybatis.boarding
 
 server:
   port: 8077

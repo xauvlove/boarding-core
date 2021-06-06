@@ -12,4 +12,10 @@
     <artifactId>boarding-infrastructure</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.boarding</groupId>
+            <artifactId>boarding-domain</artifactId>
+        </dependency>
+    </dependencies>
 </project>
