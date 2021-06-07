@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boarding.base.dao.SubjectDAO">
+
+    <sql id="tableName">
+		bd_subject
+	</sql>
+
+    <sql id="allColumn">
+		id, name, code, type, parent_id, created, updated,
+	</sql>
+
+    <sql id="efficientColumn">
+		name, code, type, parent_id, created, updated,
+	</sql>
+
+    <sql id="selectiveKeys">
+        <if test="name != null">name, </if>
+        <if test="code != null">code, </if>
+        <if test="type != null">type, </if>
+        <if test="parentId != null">parent_id, </if>
+        <if test="created != null">created, </if>
+        <if test="updated != null">updated, </if>
+    </sql>
+
+    <sql id="selectiveValues">
+        <if test="name != null">#{name}, </if>
+        <if test="code != null">#{code}, </if>
+        <if test="type != null">#{type}, </if>
+        <if test="parentId != null">#{parentId}, </if>
+        <if test="created != null">#{created}, </if>
+        <if test="updated != null">#{updated}, </if>
+    </sql>
+
+    <sql id="selectiveUpdateKeyValues">
+        <if test="name != null">name = #{name}, </if>
+        <if test="code != null">code = #{code}, </if>
+        <if test="type != null">type = #{type}, </if>
+        <if test="parentId != null">parent_id = #{parentId}, </if>
+        <if test="created != null">created = #{created}, </if>
+        <if test="updated != null">updated = #{updated}, </if>
+    </sql>
+
+    <insert id="insertSelective" parameterType="com.boarding.base.dal.SubjectDO" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="tableName"></include>
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <include refid="selectiveKeys"></include>
+        </trim>
+        values
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <include refid="selectiveValues"></include>
+        </trim>
+    </insert>
+
+    <update id="updateSelectiveById" parameterType="com.boarding.base.dal.SubjectDO">
+        update
+        <include refid="tableName"></include>
+        set
+        <trim suffixOverrides=",">
+            <include refid="selectiveUpdateKeyValues"></include>
+        </trim>
+        where id = #{id}
+    </update>
+
+</mapper>
