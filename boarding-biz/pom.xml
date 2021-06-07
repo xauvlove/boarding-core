@@ -16,5 +16,10 @@
             <groupId>com.boarding</groupId>
             <artifactId>boarding-domain</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.boarding</groupId>
+            <artifactId>boarding-api</artifactId>
+        </dependency>
     </dependencies>
 </project>

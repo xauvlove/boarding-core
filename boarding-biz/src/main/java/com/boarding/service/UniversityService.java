@@ -1,9 +1,18 @@
 package com.boarding.service;
 
+import com.boarding.Constants;
+import com.boarding.base.entity.UniversityEntity;
 import com.boarding.base.repo.UniversityRepository;
+import com.boarding.request.UniversityRequest;
+import com.boarding.response.UniversityResponse;
+import com.google.common.collect.Lists;
+import org.apache.commons.collections.CollectionUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Author ling yue
@@ -17,7 +26,67 @@ public class UniversityService {
     @Resource
     private UniversityRepository universityRepository;
 
-    public String query() {
-        return universityRepository.query().toString();
+    public UniversityResponse query(UniversityRequest universityRequest) {
+        UniversityResponse response = new UniversityResponse();
+        List<UniversityEntity> universities = universityRepository.loadAll();
+        if (CollectionUtils.isEmpty(universities)) {
+            return response;
+        }
+        String keyword = universityRequest.getKeyword();
+        List<UniversityEntity> sortedCandidates = findAndSortUniversityNameMatch(universities, keyword);
+        injectUniversityResponse(response, sortedCandidates);
+        return response;
+    }
+
+    private List<UniversityEntity> findAndSortUniversityNameMatch(List<UniversityEntity> universities, String keyword) {
+        char[] words = keyword.toCharArray();
+
+        List<UniversityEntity> matchCandidates = universities.stream().filter(universityEntity -> {
+            char[] nameChars = universityEntity.getUniversityName().toCharArray();
+            for (char nameChar : nameChars) {
+                for (char word : words) {
+                    if (nameChar == word) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }).sorted((u1, u2) -> {
+            char[] u1NameChars = u1.getUniversityName().toCharArray();
+            char[] u2NameChars = u2.getUniversityName().toCharArray();
+
+            int u1Score = 0;
+            int u2Score = 0;
+
+            for (char u1NameChar : u1NameChars) {
+                for (char word : words) {
+                    if (u1NameChar == word) {
+                        u1Score++;
+                    }
+                }
+            }
+            for (char u2NameChar : u2NameChars) {
+                for (char word : words) {
+                    if (u2NameChar == word) {
+                        u2Score++;
+                    }
+                }
+            }
+            return u2Score - u1Score;
+        }).collect(Collectors.toList());
+
+        if (matchCandidates.size() < Constants.pageSize) {
+            return matchCandidates;
+        }
+        return matchCandidates.subList(0, Constants.pageSize);
+    }
+
+    private void injectUniversityResponse(UniversityResponse response, List<UniversityEntity> universities) {
+
+        for (UniversityEntity university : universities) {
+            UniversityResponse.UniversityVO vo = new UniversityResponse.UniversityVO();
+            BeanUtils.copyProperties(university, vo);
+            response.getUniversityVO().add(vo);
+        }
     }
 }

@@ -2,6 +2,8 @@ package com.boarding.base.repo;
 
 import com.boarding.base.entity.UniversityEntity;
 
+import java.util.List;
+
 /**
  * @Author ling yue
  * @Date 2021/6/6 下午7:19
@@ -11,4 +13,6 @@ import com.boarding.base.entity.UniversityEntity;
 public interface UniversityRepository {
 
     UniversityEntity query();
+
+    List<UniversityEntity> loadAll();
 }

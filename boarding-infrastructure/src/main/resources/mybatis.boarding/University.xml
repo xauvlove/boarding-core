@@ -103,4 +103,12 @@
         where id = #{id}
     </update>
 
+    <select id="limitedQuery" resultType="com.boarding.base.dal.UniversityDO">
+        select * from
+        <include refid="tableName"></include>
+        where id > #{start}
+        order by id asc
+        limit #{limit}
+    </select>
+
 </mapper>

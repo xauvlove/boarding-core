@@ -1,6 +1,9 @@
 package com.boarding.base.dao;
 
 import com.boarding.base.dal.UniversityDO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Author ling yue
@@ -13,4 +16,6 @@ public interface UniversityDAO {
     Long insertSelective(UniversityDO universityDO);
 
     Integer updateSelectiveById(UniversityDO universityDO);
+
+    List<UniversityDO> limitedQuery(@Param("start") Integer startId, @Param("limit") Integer limit);
 }
