@@ -5,6 +5,7 @@ import com.boarding.base.dao.UniversityDAO;
 import com.boarding.base.entity.UniversityEntity;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Repository;
@@ -46,7 +47,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
     }
 
     private List<UniversityEntity> cacheLoadAll() {
-        List<UniversityEntity> universities;
+        List<UniversityEntity> universities = Lists.newArrayList();
         long size = universityCache.size();
         if (size <= 0L){
             universities = readFromDB();
@@ -54,10 +55,13 @@ public class UniversityRepositoryImpl implements UniversityRepository {
         } else {
             return new ArrayList<>(universityCache.asMap().values());
         }
-        return loadAll();
+        return universities;
     }
 
     private void saveCache(List<UniversityEntity> universities) {
+        if (CollectionUtils.isEmpty(universities)){
+            return;
+        }
         Map<String, UniversityEntity> universityMap = universities.stream().collect(
                 Collectors.toMap(UniversityEntity::getUniversityName, Function.identity(), (u1, u2) -> u2));
         universityCache.putAll(universityMap);

@@ -1,11 +1,10 @@
-package com.boarding.service;
+package com.boarding.api.service;
 
 import com.boarding.Constants;
 import com.boarding.base.entity.UniversityEntity;
 import com.boarding.base.repo.UniversityRepository;
 import com.boarding.request.UniversityRequest;
 import com.boarding.response.UniversityResponse;
-import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ import java.util.stream.Collectors;
  * @Desc description
  */
 @Service
-public class UniversityService {
+public class UniversityServiceImpl implements UniversityService {
 
     @Resource
     private UniversityRepository universityRepository;

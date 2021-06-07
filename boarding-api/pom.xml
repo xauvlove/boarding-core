@@ -11,12 +11,4 @@
 
     <artifactId>boarding-api</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.boarding</groupId>
-            <artifactId>boarding-biz</artifactId>
-        </dependency>
-    </dependencies>
-
-
 </project>
