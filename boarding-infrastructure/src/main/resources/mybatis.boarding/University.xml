@@ -4,17 +4,103 @@
 <mapper namespace="com.boarding.base.dao.UniversityDAO">
 
     <sql id="tableName">
-        bd_university
+		bd_university
+	</sql>
+
+    <sql id="allColumn">
+		id, university_id, university_name, has_postgraduate_institute, subordination, decide_passing_score_by_self, question_site, notation_site, adjustment_site, recruitment_site, location_code, location_name, sub_location_code, sub_location_name, project_nef, project_too, project_first_class_university, project_first_class_subject, created_at, updated_at,
+	</sql>
+
+    <sql id="efficientColumn">
+		university_id, university_name, has_postgraduate_institute, subordination, decide_passing_score_by_self, question_site, notation_site, adjustment_site, recruitment_site, location_code, location_name, sub_location_code, sub_location_name, project_nef, project_too, project_first_class_university, project_first_class_subject,
+	</sql>
+
+    <sql id="selectiveKeys">
+        <if test="universityId != null">university_id, </if>
+        <if test="universityName != null">university_name, </if>
+        <if test="hasPostgraduateInstitute != null">has_postgraduate_institute, </if>
+        <if test="subordination != null">subordination, </if>
+        <if test="decidePassingScoreBySelf != null">decide_passing_score_by_self, </if>
+        <if test="questionSite != null">question_site, </if>
+        <if test="notationSite != null">notation_site, </if>
+        <if test="adjustmentSite != null">adjustment_site, </if>
+        <if test="recruitmentSite != null">recruitment_site, </if>
+        <if test="locationCode != null">location_code, </if>
+        <if test="locationName != null">location_name, </if>
+        <if test="subLocationCode != null">sub_location_code, </if>
+        <if test="subLocationName != null">sub_location_name, </if>
+        <if test="projectNef != null">project_nef, </if>
+        <if test="projectToo != null">project_too, </if>
+        <if test="projectFirstClassUniversity != null">project_first_class_university, </if>
+        <if test="projectFirstClassSubject != null">project_first_class_subject, </if>
+        <if test="createdAt != null">created_at, </if>
+        <if test="updatedAt != null">updated_at, </if>
     </sql>
 
-    <select id="query" resultType="com.boarding.base.dal.UniversityDO">
-        select * from
-        <include refid="tableName"></include>
-    </select>
+    <sql id="selectiveValues">
+        <if test="universityId != null">#{universityId}, </if>
+        <if test="universityName != null">#{universityName}, </if>
+        <if test="hasPostgraduateInstitute != null">#{hasPostgraduateInstitute}, </if>
+        <if test="subordination != null">#{subordination}, </if>
+        <if test="decidePassingScoreBySelf != null">#{decidePassingScoreBySelf}, </if>
+        <if test="questionSite != null">#{questionSite}, </if>
+        <if test="notationSite != null">#{notationSite}, </if>
+        <if test="adjustmentSite != null">#{adjustmentSite}, </if>
+        <if test="recruitmentSite != null">#{recruitmentSite}, </if>
+        <if test="locationCode != null">#{locationCode}, </if>
+        <if test="locationName != null">#{locationName}, </if>
+        <if test="subLocationCode != null">#{subLocationCode}, </if>
+        <if test="subLocationName != null">#{subLocationName}, </if>
+        <if test="projectNef != null">#{projectNef}, </if>
+        <if test="projectToo != null">#{projectToo}, </if>
+        <if test="projectFirstClassUniversity != null">#{projectFirstClassUniversity}, </if>
+        <if test="projectFirstClassSubject != null">#{projectFirstClassSubject}, </if>
+        <if test="createdAt != null">#{createdAt}, </if>
+        <if test="updatedAt != null">#{updatedAt}, </if>
+    </sql>
 
-    <select id="queryOne" resultType="com.boarding.base.dal.UniversityDO">
-        select * from
+    <sql id="selectiveUpdateKeyValues">
+        <if test="universityId != null">university_id = #{universityId}, </if>
+        <if test="universityName != null">university_name = #{universityName}, </if>
+        <if test="hasPostgraduateInstitute != null">has_postgraduate_institute = #{hasPostgraduateInstitute}, </if>
+        <if test="subordination != null">subordination = #{subordination}, </if>
+        <if test="decidePassingScoreBySelf != null">decide_passing_score_by_self = #{decidePassingScoreBySelf}, </if>
+        <if test="questionSite != null">question_site = #{questionSite}, </if>
+        <if test="notationSite != null">notation_site = #{notationSite}, </if>
+        <if test="adjustmentSite != null">adjustment_site = #{adjustmentSite}, </if>
+        <if test="recruitmentSite != null">recruitment_site = #{recruitmentSite}, </if>
+        <if test="locationCode != null">location_code = #{locationCode}, </if>
+        <if test="locationName != null">location_name = #{locationName}, </if>
+        <if test="subLocationCode != null">sub_location_code = #{subLocationCode}, </if>
+        <if test="subLocationName != null">sub_location_name = #{subLocationName}, </if>
+        <if test="projectNef != null">project_nef = #{projectNef}, </if>
+        <if test="projectToo != null">project_too = #{projectToo}, </if>
+        <if test="projectFirstClassUniversity != null">project_first_class_university = #{projectFirstClassUniversity}, </if>
+        <if test="projectFirstClassSubject != null">project_first_class_subject = #{projectFirstClassSubject}, </if>
+        <if test="createdAt != null">created_at = #{createdAt}, </if>
+        <if test="updatedAt != null">updated_at = #{updatedAt}, </if>
+    </sql>
+
+    <insert id="insertSelective" parameterType="com.boarding.base.dal.UniversityDO" useGeneratedKeys="true" keyProperty="id">
+        insert into
         <include refid="tableName"></include>
-        limit 1
-    </select>
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <include refid="selectiveKeys"></include>
+        </trim>
+        values
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <include refid="selectiveValues"></include>
+        </trim>
+    </insert>
+
+    <update id="updateSelectiveById" parameterType="com.boarding.base.dal.UniversityDO">
+        update
+        <include refid="tableName"></include>
+        set
+        <trim suffixOverrides=",">
+            <include refid="selectiveUpdateKeyValues"></include>
+        </trim>
+        where id = #{id}
+    </update>
+
 </mapper>

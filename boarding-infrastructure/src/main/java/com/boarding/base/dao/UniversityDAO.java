@@ -1,7 +1,6 @@
 package com.boarding.base.dao;
 
 import com.boarding.base.dal.UniversityDO;
-import java.util.List;
 
 /**
  * @Author ling yue
@@ -11,7 +10,7 @@ import java.util.List;
  */
 public interface UniversityDAO {
 
-    List<UniversityDO> query();
+    Long insertSelective(UniversityDO universityDO);
 
-    UniversityDO queryOne();
+    Integer updateSelectiveById(UniversityDO universityDO);
 }
