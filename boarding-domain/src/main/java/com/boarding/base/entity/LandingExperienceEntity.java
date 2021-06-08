@@ -1,5 +1,6 @@
 package com.boarding.base.entity;
 
+import com.boarding.base.enums.MasterTypeEnum;
 import lombok.Data;
 
 import java.util.Date;
