@@ -13,7 +13,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -61,30 +63,37 @@ public class UniversityServiceImpl implements UniversityService {
             char[] u1NameChars = u1.getUniversityName().toCharArray();
             char[] u2NameChars = u2.getUniversityName().toCharArray();
 
-            int u1Score = 0;
-            int u2Score = 0;
+            int u1MatchScore = 0;
+            int u2MatchScore = 0;
+            int u1MatchDiffScore = 0;
+            int u2MatchDiffScore = 0;
+
+            Set<Character> u1MatchDiffSet = new HashSet<>();
+            Set<Character> u2MatchDiffSet = new HashSet<>();
 
             for (char u1NameChar : u1NameChars) {
                 for (char word : words) {
                     if (u1NameChar == word) {
-                        u1Score++;
+                        u1MatchDiffSet.add(word);
+                        u1MatchScore++;
                     }
                 }
             }
             for (char u2NameChar : u2NameChars) {
                 for (char word : words) {
                     if (u2NameChar == word) {
-                        u2Score++;
+                        u2MatchDiffSet.add(word);
+                        u2MatchScore++;
                     }
                 }
             }
-            int diff = (u2Score - u1Score);
             // 如果匹配字数相同，则按照高校名字长度排序
             // 名字越长 匹配度越低
-            if (diff == 0) {
-                diff = u2Score * 100 / u2NameChars.length - u2Score * 100 / u1NameChars.length;
+            int matchScore = u2MatchScore * 100 / u2NameChars.length - u1MatchScore * 100 / u1NameChars.length;
+            if (matchScore == 0) {
+                matchScore = u2MatchDiffSet.size() - u1MatchDiffSet.size();
             }
-            return diff;
+            return matchScore;
         }).collect(Collectors.toList());
 
         return cutProperSize(matchCandidates);
