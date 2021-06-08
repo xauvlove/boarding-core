@@ -7,12 +7,14 @@ import com.boarding.base.repo.UniversityRepository;
 import com.boarding.request.UniversityRequest;
 import com.boarding.response.UniversityResponse;
 import com.google.common.collect.Lists;
+import com.google.common.primitives.Chars;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -51,6 +53,13 @@ public class UniversityServiceImpl implements UniversityService {
 
         List<UniversityEntity> matchCandidates = universities.stream().filter(universityEntity -> {
             char[] nameChars = universityEntity.getUniversityName().toCharArray();
+            // 过滤
+            List<Character> nameCharList = Chars.asList(nameChars);
+            List<Character> keywordList = Chars.asList(words);
+            Collection<Character> subtract = CollectionUtils.subtract(keywordList, nameCharList);
+            if (CollectionUtils.isNotEmpty(subtract)) {
+                return false;
+            }
             for (char nameChar : nameChars) {
                 for (char word : words) {
                     if (nameChar == word) {
