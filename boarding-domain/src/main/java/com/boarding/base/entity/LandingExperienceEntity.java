@@ -1,4 +1,4 @@
-package com.boarding.base.dal;
+package com.boarding.base.entity;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.util.Date;
  * @Desc description
  */
 @Data
-public class LandingExperienceDO {
+public class LandingExperienceEntity {
 
     /**
      * -

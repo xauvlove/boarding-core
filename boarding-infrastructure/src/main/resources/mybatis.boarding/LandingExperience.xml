@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boarding.base.dao.LandingExperienceDAO">
+
+    <sql id="tableName">
+		bd_landing_experience
+	</sql>
+
+    <sql id="allColumn">
+		id, university_id, university_name, master_type, category_code, first_subject_code, secondary_subject_code,
+		discipline, direction, exam_year, exam_score, exam_rank, re_exam_date, re_exam_score, rank, weight_total_score,
+		 contact_info, bachelor_university_name, experience, created_at, updated_at,
+	</sql>
+
+    <sql id="efficientColumn">
+		university_id, university_name, master_type, category_code, first_subject_code, secondary_subject_code,
+		 discipline, direction, exam_year, exam_score, exam_rank, re_exam_date, re_exam_score, rank,
+		 weight_total_score, contact_info, bachelor_university_name, experience,
+	</sql>
+
+    <sql id="selectiveKeys">
+        <if test="universityId != null">university_id, </if>
+        <if test="universityName != null">university_name, </if>
+        <if test="masterType != null">master_type, </if>
+        <if test="categoryCode != null">category_code, </if>
+        <if test="firstSubjectCode != null">first_subject_code, </if>
+        <if test="secondarySubjectCode != null">secondary_subject_code, </if>
+        <if test="discipline != null">discipline, </if>
+        <if test="direction != null">direction, </if>
+        <if test="examYear != null">exam_year, </if>
+        <if test="examScore != null">exam_score, </if>
+        <if test="examRank != null">exam_rank, </if>
+        <if test="reExamDate != null">re_exam_date, </if>
+        <if test="reExamScore != null">re_exam_score, </if>
+        <if test="rank != null">rank, </if>
+        <if test="weightTotalScore != null">weight_total_score, </if>
+        <if test="contactInfo != null">contact_info, </if>
+        <if test="bachelorUniversityName != null">bachelor_university_name, </if>
+        <if test="experience != null">experience, </if>
+        <if test="createdAt != null">created_at, </if>
+        <if test="updatedAt != null">updated_at, </if>
+    </sql>
+
+    <sql id="selectiveValues">
+        <if test="universityId != null">#{universityId}, </if>
+        <if test="universityName != null">#{universityName}, </if>
+        <if test="masterType != null">#{masterType}, </if>
+        <if test="categoryCode != null">#{categoryCode}, </if>
+        <if test="firstSubjectCode != null">#{firstSubjectCode}, </if>
+        <if test="secondarySubjectCode != null">#{secondarySubjectCode}, </if>
+        <if test="discipline != null">#{discipline}, </if>
+        <if test="direction != null">#{direction}, </if>
+        <if test="examYear != null">#{examYear}, </if>
+        <if test="examScore != null">#{examScore}, </if>
+        <if test="examRank != null">#{examRank}, </if>
+        <if test="reExamDate != null">#{reExamDate}, </if>
+        <if test="reExamScore != null">#{reExamScore}, </if>
+        <if test="rank != null">#{rank}, </if>
+        <if test="weightTotalScore != null">#{weightTotalScore}, </if>
+        <if test="contactInfo != null">#{contactInfo}, </if>
+        <if test="bachelorUniversityName != null">#{bachelorUniversityName}, </if>
+        <if test="experience != null">#{experience}, </if>
+        <if test="createdAt != null">#{createdAt}, </if>
+        <if test="updatedAt != null">#{updatedAt}, </if>
+    </sql>
+
+    <sql id="selectiveUpdateKeyValues">
+        <if test="universityId != null">university_id = #{universityId}, </if>
+        <if test="universityName != null">university_name = #{universityName}, </if>
+        <if test="masterType != null">master_type = #{masterType}, </if>
+        <if test="categoryCode != null">category_code = #{categoryCode}, </if>
+        <if test="firstSubjectCode != null">first_subject_code = #{firstSubjectCode}, </if>
+        <if test="secondarySubjectCode != null">secondary_subject_code = #{secondarySubjectCode}, </if>
+        <if test="discipline != null">discipline = #{discipline}, </if>
+        <if test="direction != null">direction = #{direction}, </if>
+        <if test="examYear != null">exam_year = #{examYear}, </if>
+        <if test="examScore != null">exam_score = #{examScore}, </if>
+        <if test="examRank != null">exam_rank = #{examRank}, </if>
+        <if test="reExamDate != null">re_exam_date = #{reExamDate}, </if>
+        <if test="reExamScore != null">re_exam_score = #{reExamScore}, </if>
+        <if test="rank != null">rank = #{rank}, </if>
+        <if test="weightTotalScore != null">weight_total_score = #{weightTotalScore}, </if>
+        <if test="contactInfo != null">contact_info = #{contactInfo}, </if>
+        <if test="bachelorUniversityName != null">bachelor_university_name = #{bachelorUniversityName}, </if>
+        <if test="experience != null">experience = #{experience}, </if>
+        <if test="createdAt != null">created_at = #{createdAt}, </if>
+        <if test="updatedAt != null">updated_at = #{updatedAt}, </if>
+    </sql>
+
+    <insert id="insertSelective" parameterType="com.boarding.base.dal.LandingExperienceDO" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="tableName"></include>
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <include refid="selectiveKeys"></include>
+        </trim>
+        values
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <include refid="selectiveValues"></include>
+        </trim>
+    </insert>
+
+    <update id="updateSelectiveById" parameterType= "com.boarding.base.dal.LandingExperienceDO">
+        update
+        <include refid="tableName"></include>
+        set
+        <trim suffixOverrides=",">
+            <include refid="selectiveUpdateKeyValues"></include>
+        </trim>
+        where id = #{id}
+    </update>
+
+</mapper>
