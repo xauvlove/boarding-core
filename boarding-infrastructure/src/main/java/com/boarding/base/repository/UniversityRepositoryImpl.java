@@ -47,6 +47,17 @@ public class UniversityRepositoryImpl implements UniversityRepository {
         return cacheLoadAll();
     }
 
+    @Override
+    public Long insertSelective(UniversityEntity university) {
+        return universityDAO.insertSelective(trans2UniversityDO(university));
+    }
+
+    @Override
+    public Integer batchInsert(List<UniversityEntity> universities) {
+        List<UniversityDO> collect = universities.stream().map(this::trans2UniversityDO).collect(Collectors.toList());
+        return universityDAO.batchInsert(collect);
+    }
+
     private List<UniversityEntity> cacheLoadAll() {
         List<UniversityEntity> universities = Lists.newArrayList();
         long size = universityCache.size();
@@ -72,6 +83,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
         List<UniversityEntity> universities = new ArrayList<>();
         for (int start = 0;;) {
             List<UniversityDO> dos = universityDAO.limitedQuery(start, limit);
+            start = start + limit;
             if (CollectionUtils.isEmpty(dos)) {
                 break;
             }
@@ -85,5 +97,11 @@ public class UniversityRepositoryImpl implements UniversityRepository {
         UniversityEntity entity = new UniversityEntity();
         BeanUtils.copyProperties(d, entity);
         return entity;
+    }
+
+    private UniversityDO trans2UniversityDO(UniversityEntity e) {
+        UniversityDO d = new UniversityDO();
+        BeanUtils.copyProperties(e, d);
+        return d;
     }
 }

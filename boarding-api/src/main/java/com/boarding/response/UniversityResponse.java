@@ -26,7 +26,8 @@ public class UniversityResponse implements Serializable {
 
     private List<UniversityVO> universityVO = new ArrayList<>();
 
-    public static class UniversityVO {
+    @Data
+    public static class UniversityVO implements Serializable {
         /**
          * 高校 id
          */

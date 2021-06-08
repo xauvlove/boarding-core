@@ -1,5 +1,7 @@
 package com.boarding.api.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.boarding.request.UniversityRequest;
 import com.boarding.response.UniversityResponse;
 import com.boarding.api.service.UniversityService;
@@ -22,7 +24,7 @@ public class UniversityController {
     private UniversityService universityService;
 
     @GetMapping("/list/byKeywords")
-    public UniversityResponse queryUniversityByKeyword(UniversityRequest universityRequest) {
-        return universityService.query(universityRequest);
+    public String queryUniversityByKeyword(UniversityRequest universityRequest) {
+        return JSON.toJSONString(universityService.query(universityRequest));
     }
 }

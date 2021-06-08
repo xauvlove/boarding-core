@@ -1,5 +1,7 @@
 package com.boarding.base.dal;
 
+import lombok.Data;
+
 import java.util.Date;
 
 /**
@@ -8,6 +10,7 @@ import java.util.Date;
  * @Pkg com.boarding
  * @Desc description
  */
+@Data
 public class UniversityDO {
 
     /**
@@ -38,7 +41,7 @@ public class UniversityDO {
     /**
      * 是否自主划线
      */
-    private Boolean decidePassingScoreBySelf;
+    private Boolean decidePassingScoreSelf;
 
     /**
      * 在线咨询网站

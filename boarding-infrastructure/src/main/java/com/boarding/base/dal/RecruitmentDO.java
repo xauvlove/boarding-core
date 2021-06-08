@@ -2,6 +2,7 @@ package com.boarding.base.dal;
 
 import com.boarding.base.enums.LearningModeEnum;
 import com.boarding.base.enums.MasterTypeEnum;
+import lombok.Data;
 
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import java.util.Date;
  * @Pkg com.boarding.base.dal
  * @Desc description
  */
+@Data
 public class RecruitmentDO {
 
     /**

@@ -40,7 +40,7 @@ public class UniversityEntity {
     /**
      * 是否自主划线
      */
-    private Boolean decidePassingScoreBySelf;
+    private Boolean decidePassingScoreSelf;
 
     /**
      * 在线咨询网站

@@ -2,12 +2,14 @@ package com.boarding.api.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.boarding.api.InnerUniversity;
+import com.boarding.api.service.UniversityService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,21 +27,12 @@ import java.util.List;
 @RequestMapping("/boarding/inner")
 public class InnerController {
 
+    @Resource
+    private UniversityService universityService;
+
     @GetMapping("/doWriteDB")
     public String writeUniversity() throws Exception {
-        FileInputStream fileInputStream = new FileInputStream("/Users/lingyue/apps/codes/lingyue/" +
-                "boarding/files/boarding-data-files-master/_2021/具有招生资格的大学.txt");
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
-        String line = "";
-
-        List<InnerUniversity> list = new ArrayList<>();
-        while((line = bufferedReader.readLine())!= null) {
-            if (StringUtils.isBlank(line)) {
-                continue;
-            }
-            InnerUniversity university = JSONObject.parseObject(line, InnerUniversity.class);
-            System.out.println();
-        }
-        return "";
+       universityService.write();
+       return "";
     }
 }

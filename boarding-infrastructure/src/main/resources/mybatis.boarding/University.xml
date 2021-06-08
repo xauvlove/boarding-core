@@ -8,13 +8,13 @@
 	</sql>
 
     <sql id="allColumn">
-		id, university_id, university_name, has_postgraduate_institute, subordination, decide_passing_score_by_self, question_site,
+		id, university_id, university_name, has_postgraduate_institute, subordination, decide_passing_score_self, question_site,
 		notation_site, adjustment_site, recruitment_site, location_code, location_name, sub_location_code, sub_location_name, project_nef,
 		project_too, project_first_class_university, project_first_class_subject, created_at, updated_at,
 	</sql>
 
     <sql id="efficientColumn">
-		university_id, university_name, has_postgraduate_institute, subordination, decide_passing_score_by_self,
+		university_id, university_name, has_postgraduate_institute, subordination, decide_passing_score_self,
 		question_site, notation_site, adjustment_site, recruitment_site, location_code, location_name, sub_location_code,
 		 sub_location_name, project_nef, project_too, project_first_class_university, project_first_class_subject,
 	</sql>
@@ -24,7 +24,7 @@
         <if test="universityName != null">university_name, </if>
         <if test="hasPostgraduateInstitute != null">has_postgraduate_institute, </if>
         <if test="subordination != null">subordination, </if>
-        <if test="decidePassingScoreBySelf != null">decide_passing_score_by_self, </if>
+        <if test="decidePassingScoreSelf != null">decide_passing_score_self, </if>
         <if test="questionSite != null">question_site, </if>
         <if test="notationSite != null">notation_site, </if>
         <if test="adjustmentSite != null">adjustment_site, </if>
@@ -46,7 +46,7 @@
         <if test="universityName != null">#{universityName}, </if>
         <if test="hasPostgraduateInstitute != null">#{hasPostgraduateInstitute}, </if>
         <if test="subordination != null">#{subordination}, </if>
-        <if test="decidePassingScoreBySelf != null">#{decidePassingScoreBySelf}, </if>
+        <if test="decidePassingScoreSelf != null">#{decidePassingScoreSelf}, </if>
         <if test="questionSite != null">#{questionSite}, </if>
         <if test="notationSite != null">#{notationSite}, </if>
         <if test="adjustmentSite != null">#{adjustmentSite}, </if>
@@ -68,7 +68,7 @@
         <if test="universityName != null">university_name = #{universityName}, </if>
         <if test="hasPostgraduateInstitute != null">has_postgraduate_institute = #{hasPostgraduateInstitute}, </if>
         <if test="subordination != null">subordination = #{subordination}, </if>
-        <if test="decidePassingScoreBySelf != null">decide_passing_score_by_self = #{decidePassingScoreBySelf}, </if>
+        <if test="decidePassingScoreSelf != null">decide_passing_score_self = #{decidePassingScoreSelf}, </if>
         <if test="questionSite != null">question_site = #{questionSite}, </if>
         <if test="notationSite != null">notation_site = #{notationSite}, </if>
         <if test="adjustmentSite != null">adjustment_site = #{adjustmentSite}, </if>
@@ -95,6 +95,16 @@
         <trim suffixOverrides="," prefix="(" suffix=")">
             <include refid="selectiveValues"></include>
         </trim>
+    </insert>
+    <insert id="batchInsert" parameterType="com.boarding.base.dal.UniversityDO">
+        insert into
+        <include refid="tableName"></include>
+        (<include refid="efficientColumn"></include>)
+        values
+        <foreach collection="dos" index="index" item="" separator=",">
+            (#{d.}, #{d.}, #{d.}, #{d.}, #{d.}, #{d.}, #{d.},
+            #{d.}, #{d.}, #{d.}, #{d.}, #{d.}, )
+        </foreach>
     </insert>
 
     <update id="updateSelectiveById" parameterType="com.boarding.base.dal.UniversityDO">

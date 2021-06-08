@@ -1,4 +1,4 @@
-package com.boarding.api.service;
+package com.boarding.api;
 
 /*
        /\   /\             /\.__                      
@@ -9,18 +9,18 @@ ___  __)/___)/  __ _____  _)/|  |   _______  __ ____
       \/     \/                                    \/
 */
 
-import com.boarding.request.UniversityRequest;
-import com.boarding.response.UniversityResponse;
+import lombok.Data;
 
 /**
- * @Date 2021/06/07 22:45
+ * @Date 2021/06/08 21:48
  * @Author ling yue
- * @Package com.boarding.service
+ * @Package com.boarding.api
  * @Desc
  */
-public interface UniversityService {
+@Data
+public class InnerShengfen {
 
-    UniversityResponse query(UniversityRequest universityRequest);
+    private String mc;
 
-    void write();
+    private String dm;
 }

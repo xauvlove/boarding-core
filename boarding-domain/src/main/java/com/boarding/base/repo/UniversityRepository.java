@@ -15,4 +15,8 @@ public interface UniversityRepository {
     UniversityEntity query();
 
     List<UniversityEntity> loadAll();
+
+    Integer batchInsert(List<UniversityEntity> universities);
+
+    Long insertSelective(UniversityEntity university);
 }
