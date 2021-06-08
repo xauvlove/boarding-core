@@ -91,7 +91,9 @@ public class UniversityServiceImpl implements UniversityService {
             // 名字越长 匹配度越低
             int matchScore = u2MatchScore * 100 / u2NameChars.length - u1MatchScore * 100 / u1NameChars.length;
             if (matchScore == 0) {
-                matchScore = u2MatchDiffSet.size() - u1MatchDiffSet.size();
+                u1MatchDiffScore = u1MatchDiffSet.size();
+                u2MatchDiffScore = u2MatchDiffSet.size();
+                matchScore = u2MatchDiffScore - u1MatchDiffScore;
             }
             return matchScore;
         }).collect(Collectors.toList());
