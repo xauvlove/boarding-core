@@ -1,8 +1,9 @@
-package com.boarding.base.repo;
+package com.boarding.base.repository;
 
 import com.boarding.base.dal.UniversityDO;
 import com.boarding.base.dao.UniversityDAO;
 import com.boarding.base.entity.UniversityEntity;
+import com.boarding.base.repo.UniversityRepository;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Lists;
