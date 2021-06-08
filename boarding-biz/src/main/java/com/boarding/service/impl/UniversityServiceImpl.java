@@ -89,11 +89,13 @@ public class UniversityServiceImpl implements UniversityService {
             }
             // 如果匹配字数相同，则按照高校名字长度排序
             // 名字越长 匹配度越低
-            int matchScore = u2MatchScore * 100 / u2NameChars.length - u1MatchScore * 100 / u1NameChars.length;
+
+            u1MatchDiffScore = u1MatchDiffSet.size();
+            u2MatchDiffScore = u2MatchDiffSet.size();
+            int matchScore = u2MatchDiffScore - u1MatchDiffScore;
+
             if (matchScore == 0) {
-                u1MatchDiffScore = u1MatchDiffSet.size();
-                u2MatchDiffScore = u2MatchDiffSet.size();
-                matchScore = u2MatchDiffScore - u1MatchDiffScore;
+                matchScore = u2MatchScore * 100 / u2NameChars.length - u1MatchScore * 100 / u1NameChars.length;
             }
             return matchScore;
         }).collect(Collectors.toList());
