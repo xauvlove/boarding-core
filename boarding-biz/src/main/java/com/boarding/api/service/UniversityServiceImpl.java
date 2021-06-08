@@ -5,7 +5,9 @@ import com.boarding.base.entity.UniversityEntity;
 import com.boarding.base.repo.UniversityRepository;
 import com.boarding.request.UniversityRequest;
 import com.boarding.response.UniversityResponse;
+import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,10 @@ public class UniversityServiceImpl implements UniversityService {
     }
 
     private List<UniversityEntity> findAndSortUniversityNameMatch(List<UniversityEntity> universities, String keyword) {
+
+        if (StringUtils.isBlank(keyword)) {
+            return cutProperSize(universities);
+        }
         char[] words = keyword.toCharArray();
 
         List<UniversityEntity> matchCandidates = universities.stream().filter(universityEntity -> {
@@ -74,10 +80,17 @@ public class UniversityServiceImpl implements UniversityService {
             return u2Score - u1Score;
         }).collect(Collectors.toList());
 
-        if (matchCandidates.size() < Constants.pageSize) {
-            return matchCandidates;
+        return cutProperSize(matchCandidates);
+    }
+
+    private List<UniversityEntity> cutProperSize(List<UniversityEntity> universities) {
+        if (CollectionUtils.isEmpty(universities)) {
+            return Lists.newArrayList();
         }
-        return matchCandidates.subList(0, Constants.pageSize);
+        if (universities.size() < Constants.pageSize) {
+            return universities;
+        }
+        return universities.subList(0, Constants.pageSize);
     }
 
     private void injectUniversityResponse(UniversityResponse response, List<UniversityEntity> universities) {

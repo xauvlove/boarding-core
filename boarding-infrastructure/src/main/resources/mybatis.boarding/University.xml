@@ -8,11 +8,15 @@
 	</sql>
 
     <sql id="allColumn">
-		id, university_id, university_name, has_postgraduate_institute, subordination, decide_passing_score_by_self, question_site, notation_site, adjustment_site, recruitment_site, location_code, location_name, sub_location_code, sub_location_name, project_nef, project_too, project_first_class_university, project_first_class_subject, created_at, updated_at,
+		id, university_id, university_name, has_postgraduate_institute, subordination, decide_passing_score_by_self, question_site,
+		notation_site, adjustment_site, recruitment_site, location_code, location_name, sub_location_code, sub_location_name, project_nef,
+		project_too, project_first_class_university, project_first_class_subject, created_at, updated_at,
 	</sql>
 
     <sql id="efficientColumn">
-		university_id, university_name, has_postgraduate_institute, subordination, decide_passing_score_by_self, question_site, notation_site, adjustment_site, recruitment_site, location_code, location_name, sub_location_code, sub_location_name, project_nef, project_too, project_first_class_university, project_first_class_subject,
+		university_id, university_name, has_postgraduate_institute, subordination, decide_passing_score_by_self,
+		question_site, notation_site, adjustment_site, recruitment_site, location_code, location_name, sub_location_code,
+		 sub_location_name, project_nef, project_too, project_first_class_university, project_first_class_subject,
 	</sql>
 
     <sql id="selectiveKeys">
