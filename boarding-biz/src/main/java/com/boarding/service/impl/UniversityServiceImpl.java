@@ -1,6 +1,7 @@
-package com.boarding.api.service;
+package com.boarding.service.impl;
 
 import com.boarding.Constants;
+import com.boarding.api.service.UniversityService;
 import com.boarding.base.entity.UniversityEntity;
 import com.boarding.base.repo.UniversityRepository;
 import com.boarding.request.UniversityRequest;
@@ -77,7 +78,13 @@ public class UniversityServiceImpl implements UniversityService {
                     }
                 }
             }
-            return u2Score - u1Score;
+            int diff = (u2Score - u1Score);
+            // 如果匹配字数相同，则按照高校名字长度排序
+            // 名字越长 匹配度越低
+            if (diff == 0) {
+                diff = u2Score * 100 / u2NameChars.length - u2Score * 100 / u1NameChars.length;
+            }
+            return diff;
         }).collect(Collectors.toList());
 
         return cutProperSize(matchCandidates);
