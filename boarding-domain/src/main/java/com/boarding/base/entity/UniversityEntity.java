@@ -2,6 +2,8 @@ package com.boarding.base.entity;
 
 import lombok.Data;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @Author ling yue

@@ -1,4 +1,4 @@
-package com.boarding.api;
+package com.boarding.cons;
 
 /*
        /\   /\             /\.__                      
@@ -9,18 +9,13 @@ ___  __)/___)/  __ _____  _)/|  |   _______  __ ____
       \/     \/                                    \/
 */
 
-import lombok.Data;
-
 /**
- * @Date 2021/06/08 21:48
+ * @Date 2021/06/07 22:29
  * @Author ling yue
- * @Package com.boarding.api
+ * @Package com.boarding
  * @Desc
  */
-@Data
-public class InnerShengfen {
+public class BaseConstants {
 
-    private String mc;
-
-    private String dm;
+    public static final Integer pageSize = 10;
 }

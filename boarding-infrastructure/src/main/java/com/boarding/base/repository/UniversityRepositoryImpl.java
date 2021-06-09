@@ -38,11 +38,6 @@ public class UniversityRepositoryImpl implements UniversityRepository {
             .softValues().build();
 
     @Override
-    public UniversityEntity query() {
-        return new UniversityEntity();
-    }
-
-    @Override
     public List<UniversityEntity> loadAll() {
         return cacheLoadAll();
     }
@@ -79,6 +74,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
         if (CollectionUtils.isEmpty(universities)){
             return;
         }
+        universityCache.invalidateAll();
         Map<String, UniversityEntity> universityMap = universities.stream().collect(
                 Collectors.toMap(UniversityEntity::getUniversityName, Function.identity(), (u1, u2) -> u2));
         universityCache.putAll(universityMap);

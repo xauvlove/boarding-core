@@ -1,6 +1,6 @@
 package com.boarding.service.impl;
 
-import com.boarding.Constants;
+import com.boarding.cons.BaseConstants;
 import com.boarding.api.service.UniversityService;
 import com.boarding.base.entity.UniversityEntity;
 import com.boarding.base.repo.UniversityRepository;
@@ -107,7 +107,37 @@ public class UniversityServiceImpl implements UniversityService {
             if (matchScore == 0) {
                 matchScore = u2MatchScore * 100 / u2NameChars.length - u1MatchScore * 100 / u1NameChars.length;
             }
-            return matchScore;
+            // 如果匹配字符还是相同的 按照学校等级进行排序
+            if (matchScore != 0) {
+                return matchScore;
+            }
+
+            // 按照学校等级进行排序
+            if (u2.getProjectFirstClassUniversity()) {
+                return 1;
+            }
+            if (u1.getProjectFirstClassUniversity()) {
+                return -1;
+            }
+            if (u2.getProjectNef()) {
+                return 1;
+            }
+            if (u1.getProjectNef()) {
+                return -1;
+            }
+            if (u2.getProjectFirstClassSubject()) {
+                return 1;
+            }
+            if (u1.getProjectFirstClassSubject()) {
+                return -1;
+            }
+            if (u2.getProjectToo()) {
+                return 1;
+            }
+            if (u1.getProjectToo()) {
+                return -1;
+            }
+            return 0;
         }).collect(Collectors.toList());
 
         return cutProperSize(matchCandidates);
@@ -117,10 +147,10 @@ public class UniversityServiceImpl implements UniversityService {
         if (CollectionUtils.isEmpty(universities)) {
             return Lists.newArrayList();
         }
-        if (universities.size() < Constants.pageSize) {
+        if (universities.size() < BaseConstants.pageSize) {
             return universities;
         }
-        return universities.subList(0, Constants.pageSize);
+        return universities.subList(0, BaseConstants.pageSize);
     }
 
     private void injectUniversityResponse(UniversityResponse response, List<UniversityEntity> universities) {

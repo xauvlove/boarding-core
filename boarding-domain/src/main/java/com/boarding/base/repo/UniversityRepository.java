@@ -12,8 +12,6 @@ import java.util.List;
  */
 public interface UniversityRepository {
 
-    UniversityEntity query();
-
     List<UniversityEntity> loadAll();
 
     Integer batchInsert(List<UniversityEntity> universities);
