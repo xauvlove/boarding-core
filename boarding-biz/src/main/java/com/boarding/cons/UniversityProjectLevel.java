@@ -17,11 +17,23 @@ ___  __)/___)/  __ _____  _)/|  |   _______  __ ____
  */
 public class UniversityProjectLevel {
 
+    /**
+     * 一流高校
+     */
     public static final int projectClassicUniversity = 100;
 
+    /**
+     * 985
+     */
     public static final int projectNEF = 90;
 
+    /**
+     * 一流学科
+     */
     public static final int projectClassicSubject = 60;
 
+    /**
+     * 211
+     */
     public static final int projectTOO = 40;
 }
