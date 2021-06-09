@@ -67,4 +67,11 @@
         where id = #{id}
     </update>
 
+    <select id="limitedQuery" resultType="com.boarding.base.dal.SubjectDO">
+        select * from
+        <include refid="tableName"></include>
+        order by id asc
+        limit #{offset}, #{limit}
+    </select>
+
 </mapper>

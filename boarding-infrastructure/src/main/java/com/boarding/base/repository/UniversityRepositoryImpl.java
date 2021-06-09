@@ -61,7 +61,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
     private List<UniversityEntity> cacheLoadAll() {
         List<UniversityEntity> universities = Lists.newArrayList();
         long size = universityCache.size();
-        if (size <= 0L){
+        if (size <= 0L) {
             universities = readFromDB();
             saveCache(universities);
         } else {

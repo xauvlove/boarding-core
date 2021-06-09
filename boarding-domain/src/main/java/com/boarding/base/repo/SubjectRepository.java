@@ -1,6 +1,9 @@
 package com.boarding.base.repo;
 
 import com.boarding.base.entity.SubjectEntity;
+import com.boarding.base.entity.SubjectTreeEntity;
+import com.boarding.base.entity.UniversityEntity;
+
 import java.util.List;
 
 /**
@@ -9,11 +12,13 @@ import java.util.List;
  * @Pkg PACKAGE_NAME
  * @Desc description
  */
-public interface SubjectRepository {
+public interface SubjectRepository extends BaseRepository {
 
     Integer batchInsert(List<SubjectEntity> subjects);
 
     Long insertSelective(SubjectEntity subject);
 
     Integer updateSelective(SubjectEntity subject);
+
+    SubjectTreeEntity queryAndBuildTree();
 }

@@ -18,4 +18,6 @@ public interface SubjectDAO {
     Integer updateSelectiveById(SubjectDO subjectDO);
 
     Integer batchInsert(@Param("dos") List<SubjectDO> dos);
+
+    List<SubjectDO> limitedQuery(@Param("offset") Integer offset, @Param("limit") Integer limit);
 }
