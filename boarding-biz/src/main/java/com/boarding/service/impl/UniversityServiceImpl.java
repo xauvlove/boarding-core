@@ -103,10 +103,11 @@ public class UniversityServiceImpl implements UniversityService {
             u1MatchDiffScore = u1MatchDiffSet.size();
             u2MatchDiffScore = u2MatchDiffSet.size();
             int matchScore = u2MatchDiffScore - u1MatchDiffScore;
-
-            if (matchScore == 0) {
-                matchScore = u2MatchScore * 100 / u2NameChars.length - u1MatchScore * 100 / u1NameChars.length;
+            if (matchScore != 0) {
+                return matchScore;
             }
+
+            matchScore = u2MatchScore * 100 / u2NameChars.length - u1MatchScore * 100 / u1NameChars.length;
             // 如果匹配字符还是相同的 按照学校等级进行排序
             if (matchScore != 0) {
                 return matchScore;
