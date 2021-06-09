@@ -1,10 +1,6 @@
 package com.boarding.service.impl;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.boarding.Constants;
-import com.boarding.api.InnerShengfen;
-import com.boarding.api.InnerUniversity;
 import com.boarding.api.service.UniversityService;
 import com.boarding.base.entity.UniversityEntity;
 import com.boarding.base.repo.UniversityRepository;
@@ -15,10 +11,8 @@ import com.google.common.primitives.Chars;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
-import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -36,76 +30,7 @@ public class UniversityServiceImpl implements UniversityService {
 
     @Override
     public void write() {
-        FileInputStream fileInputStreamUniversity = null;
-        FileInputStream fileInputStreamLocation = null;
-        try {
-            fileInputStreamUniversity = new FileInputStream("D:\\dev\\projects\\doing\\数据文件\\_2021\\具有招生资格的大学.txt");
-            fileInputStreamLocation = new FileInputStream("D:\\dev\\projects\\doing\\数据文件\\_2021\\省份代号.txt");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        BufferedReader bufferedReaderShengfen = new BufferedReader(new InputStreamReader(fileInputStreamLocation));
-        String line = "";
-        List<InnerShengfen> innerShengfens = new ArrayList<>();
 
-        try {
-            line = bufferedReaderShengfen.readLine();
-            innerShengfens = JSONArray.parseArray(line, InnerShengfen.class);
-        } catch (Exception e){
-
-        }
-
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStreamUniversity));
-        line = "";
-
-        List<InnerUniversity> list = new ArrayList<>();
-
-        List<UniversityEntity> universityEntities = new ArrayList<>();
-        while(true) {
-            try {
-                if ((line = bufferedReader.readLine()) == null) break;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (StringUtils.isBlank(line)) {
-                continue;
-            }
-            InnerUniversity university = JSONObject.parseObject(line, InnerUniversity.class);
-            UniversityEntity dbUniversity = new UniversityEntity();
-            dbUniversity.setUniversityId(Long.parseLong(university.getUniversityId()));
-            dbUniversity.setUniversityName(university.getUniversityName());
-            dbUniversity.setHasPostgraduateInstitute(university.getHasPostgraduateInstitute());
-            dbUniversity.setSubordination(university.getUniversitySubordination());
-            dbUniversity.setDecidePassingScoreSelf(university.getPassingScoreBySelf());
-            dbUniversity.setQuestionSite(university.getQuestionOnline());
-            dbUniversity.setNotationSite(university.getUniversityNotation());
-            dbUniversity.setAdjustmentSite(university.getAdjustmentRegulation());
-            dbUniversity.setRecruitmentSite(university.getRecruitRegulation());
-            dbUniversity.setLocationName(university.getUniversityLocation());
-            dbUniversity.setLocationCode(getLocationCode(innerShengfens, university.getUniversityLocation()));
-            dbUniversity.setSubLocationCode("");
-            dbUniversity.setSubLocationCode("");
-            universityEntities.add(dbUniversity);
-        }
-        for (UniversityEntity universityEntity : universityEntities) {
-            try {
-                Long id = universityRepository.insertSelective(universityEntity);
-                System.out.println(id);
-
-            } catch (DuplicateKeyException e){
-                e.printStackTrace();
-            }
-
-        }
-    }
-
-    private String getLocationCode(List<InnerShengfen> innerShengfens, String location) {
-        for (InnerShengfen innerShengfen : innerShengfens) {
-            if (innerShengfen.getMc().startsWith(location)){
-                return innerShengfen.getDm();
-            }
-        }
-        return "";
     }
 
     public UniversityResponse query(UniversityRequest universityRequest) {

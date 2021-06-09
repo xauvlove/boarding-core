@@ -53,6 +53,11 @@ public class UniversityRepositoryImpl implements UniversityRepository {
     }
 
     @Override
+    public Integer updateSelective(UniversityEntity university) {
+        return universityDAO.updateSelectiveById(trans2UniversityDO(university));
+    }
+
+    @Override
     public Integer batchInsert(List<UniversityEntity> universities) {
         List<UniversityDO> collect = universities.stream().map(this::trans2UniversityDO).collect(Collectors.toList());
         return universityDAO.batchInsert(collect);

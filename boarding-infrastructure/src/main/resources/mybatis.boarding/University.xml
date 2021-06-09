@@ -124,5 +124,4 @@
         order by id asc
         limit #{limit}
     </select>
-
 </mapper>

@@ -19,4 +19,6 @@ public interface UniversityRepository {
     Integer batchInsert(List<UniversityEntity> universities);
 
     Long insertSelective(UniversityEntity university);
+
+    Integer updateSelective(UniversityEntity university);
 }
