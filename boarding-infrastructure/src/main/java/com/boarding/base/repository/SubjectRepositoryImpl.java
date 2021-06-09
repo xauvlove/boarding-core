@@ -61,6 +61,7 @@ public class SubjectRepositoryImpl implements SubjectRepository {
         SubjectTreeEntity root = new SubjectTreeEntity();
         root.setId(0L);
         root.setType(-1);
+        root.setParentId(-1L);
         root.setName("root");
         root.setCode("root");
 
