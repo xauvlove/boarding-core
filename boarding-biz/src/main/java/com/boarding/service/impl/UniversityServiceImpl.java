@@ -1,5 +1,6 @@
 package com.boarding.service.impl;
 
+import com.boarding.base.repo.SubjectRepository;
 import com.boarding.cons.BaseConstants;
 import com.boarding.api.service.UniversityService;
 import com.boarding.base.entity.UniversityEntity;
@@ -99,7 +100,6 @@ public class UniversityServiceImpl implements UniversityService {
             }
             // 如果匹配字数相同，则按照高校名字长度排序
             // 名字越长 匹配度越低
-
             u1MatchDiffScore = u1MatchDiffSet.size();
             u2MatchDiffScore = u2MatchDiffSet.size();
             int matchScore = u2MatchDiffScore - u1MatchDiffScore;

@@ -1,6 +1,9 @@
 package com.boarding.base.dao;
 
 import com.boarding.base.dal.SubjectDO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Author ling yue
@@ -13,4 +16,6 @@ public interface SubjectDAO {
     Long insertSelective(SubjectDO subjectDO);
 
     Integer updateSelectiveById(SubjectDO subjectDO);
+
+    Integer batchInsert(@Param("dos") List<SubjectDO> dos);
 }

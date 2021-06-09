@@ -25,7 +25,7 @@ public enum SubjectTypeEnum {
 
     ;
 
-    private Integer code;
+    private Integer type;
 
     private String name;
 }
