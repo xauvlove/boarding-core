@@ -5,6 +5,7 @@ import com.boarding.cons.BaseConstants;
 import com.boarding.api.service.UniversityService;
 import com.boarding.base.entity.UniversityEntity;
 import com.boarding.base.repo.UniversityRepository;
+import com.boarding.cons.UniversityProjectLevel;
 import com.boarding.request.UniversityRequest;
 import com.boarding.response.UniversityResponse;
 import com.google.common.collect.Lists;
@@ -115,28 +116,28 @@ public class UniversityServiceImpl implements UniversityService {
 
             // 按照学校等级进行排序
             if (u2.getProjectFirstClassUniversity()) {
-                return 1;
+                return UniversityProjectLevel.projectClassicUniversity;
             }
             if (u1.getProjectFirstClassUniversity()) {
-                return -1;
+                return -UniversityProjectLevel.projectClassicUniversity;
             }
             if (u2.getProjectNef()) {
-                return 1;
+                return UniversityProjectLevel.projectNEF;
             }
             if (u1.getProjectNef()) {
-                return -1;
+                return -UniversityProjectLevel.projectNEF;
             }
             if (u2.getProjectFirstClassSubject()) {
-                return 1;
+                return UniversityProjectLevel.projectClassicSubject;
             }
             if (u1.getProjectFirstClassSubject()) {
-                return -1;
+                return -UniversityProjectLevel.projectClassicSubject;
             }
             if (u2.getProjectToo()) {
-                return 1;
+                return UniversityProjectLevel.projectTOO;
             }
             if (u1.getProjectToo()) {
-                return -1;
+                return -UniversityProjectLevel.projectTOO;
             }
             return 0;
         }).collect(Collectors.toList());
