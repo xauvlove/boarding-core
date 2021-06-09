@@ -1,6 +1,5 @@
 package com.boarding.service.impl;
 
-import com.boarding.base.repo.SubjectRepository;
 import com.boarding.cons.BaseConstants;
 import com.boarding.api.service.UniversityService;
 import com.boarding.base.entity.UniversityEntity;
@@ -77,8 +76,8 @@ public class UniversityServiceImpl implements UniversityService {
 
             int u1MatchScore = 0;
             int u2MatchScore = 0;
-            int u1MatchDiffScore = 0;
-            int u2MatchDiffScore = 0;
+            int u1MatchDiffScore;
+            int u2MatchDiffScore;
 
             Set<Character> u1MatchDiffSet = new HashSet<>();
             Set<Character> u2MatchDiffSet = new HashSet<>();
