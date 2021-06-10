@@ -21,4 +21,6 @@ public interface SubjectRepository extends BaseRepository {
     Integer updateSelective(SubjectEntity subject);
 
     SubjectTreeEntity queryAndBuildTree();
+
+    SubjectEntity getUnique(String subjectCode, Integer subjectType ,Long parentId);
 }

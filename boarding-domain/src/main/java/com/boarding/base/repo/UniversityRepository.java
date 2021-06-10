@@ -14,6 +14,10 @@ public interface UniversityRepository {
 
     List<UniversityEntity> loadAll();
 
+    UniversityEntity getByUniversityId(Long universityId);
+
+    UniversityEntity getByUniversityName(String universityName);
+
     Integer batchInsert(List<UniversityEntity> universities);
 
     Long insertSelective(UniversityEntity university);

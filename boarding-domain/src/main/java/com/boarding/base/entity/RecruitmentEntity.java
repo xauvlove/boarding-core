@@ -2,8 +2,10 @@ package com.boarding.base.entity;
 
 import com.boarding.base.enums.LearningModeEnum;
 import com.boarding.base.enums.MasterTypeEnum;
+import lombok.Data;
 
 import java.util.Date;
+
 
 /**
  * @Author ling yue
@@ -11,6 +13,7 @@ import java.util.Date;
  * @Pkg com.boarding.base.dal
  * @Desc description
  */
+@Data
 public class RecruitmentEntity {
 
     /**

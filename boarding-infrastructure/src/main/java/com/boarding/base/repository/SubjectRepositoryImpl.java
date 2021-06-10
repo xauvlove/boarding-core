@@ -48,6 +48,16 @@ public class SubjectRepositoryImpl implements SubjectRepository {
         return subjectDAO.updateSelectiveById(trans2SubjectDO(university));
     }
 
+
+    @Override
+    public SubjectEntity getUnique(String subjectCode, Integer subjectType, Long parentId) {
+        List<SubjectEntity> subjects = loadAll();
+        String uniqueKey = StringUtils.joinWith("-", subjectCode, subjectType, parentId);
+        Map<String, SubjectEntity> subjectMap = subjects.stream().collect(
+                Collectors.toMap(subject -> StringUtils.joinWith("-", subject.getCode(), subject.getType(), subject.getParentId()), Function.identity()));
+        return subjectMap.get(uniqueKey);
+    }
+
     @Override
     public Integer batchInsert(List<SubjectEntity> universities) {
         List<SubjectDO> collect = universities.stream().map(this::trans2SubjectDO).collect(Collectors.toList());

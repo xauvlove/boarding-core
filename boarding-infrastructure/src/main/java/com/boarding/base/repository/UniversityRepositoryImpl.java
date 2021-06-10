@@ -38,6 +38,22 @@ public class UniversityRepositoryImpl implements UniversityRepository {
             .softValues().build();
 
     @Override
+    public UniversityEntity getByUniversityId(Long universityId) {
+        List<UniversityEntity> universityEntities = loadAll();
+        Map<Long, UniversityEntity> universityMap = universityEntities.stream().collect(
+                Collectors.toMap(UniversityEntity::getUniversityId, Function.identity()));
+        return universityMap.get(universityId);
+    }
+
+    @Override
+    public UniversityEntity getByUniversityName(String universityName) {
+        List<UniversityEntity> universityEntities = loadAll();
+        Map<String, UniversityEntity> universityMap = universityEntities.stream().collect(
+                Collectors.toMap(UniversityEntity::getUniversityName, Function.identity()));
+        return universityMap.get(universityName);
+    }
+
+    @Override
     public List<UniversityEntity> loadAll() {
         return cacheLoadAll();
     }
