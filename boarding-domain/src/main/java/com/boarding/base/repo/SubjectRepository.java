@@ -22,5 +22,7 @@ public interface SubjectRepository extends BaseRepository {
 
     SubjectTreeEntity queryAndBuildTree();
 
-    SubjectEntity getUnique(String subjectCode, Integer subjectType ,Long parentId);
+    SubjectEntity getUniqueByCode(String subjectCode, Integer subjectType , Long parentId);
+
+    SubjectEntity getUniqueByName(String subjectName, Integer subjectType , Long parentId);
 }

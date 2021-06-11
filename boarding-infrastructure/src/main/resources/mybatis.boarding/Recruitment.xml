@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boarding.base.dao.RecruitmentDAO">
+
+    <sql id="tableName">
+        bd_recruitment_detail
+    </sql>
+
+    <sql id="allColumn">
+        id, university_id, university_name, master_type, category_name, category_code, first_subject_name, first_subject_code,
+        secondary_subject_name, secondary_subject_code, discipline_name, discipline_code, institute_name, institute_code,
+        learning_mode, exam_mode, exam_outline_site, cross_subject, recruitment_by_exam, recruitment_by_exam_info, recruitment_mode, remark, created_at, updated_at,
+    </sql>
+
+    <sql id="efficientColumn">
+        university_id, university_name, master_type, category_name, category_code, first_subject_name, first_subject_code,
+        secondary_subject_name, secondary_subject_code, discipline_name, discipline_code, institute_name, institute_code,
+        learning_mode, exam_mode, exam_outline_site, cross_subject, recruitment_by_exam, recruitment_by_exam_info, recruitment_mode, remark,
+    </sql>
+
+    <sql id="selectiveKeys">
+        <if test="universityId != null">university_id, </if>
+        <if test="universityName != null">university_name, </if>
+        <if test="masterType != null">master_type, </if>
+        <if test="categoryName != null">category_name, </if>
+        <if test="categoryCode != null">category_code, </if>
+        <if test="firstSubjectName != null">first_subject_name, </if>
+        <if test="firstSubjectCode != null">first_subject_code, </if>
+        <if test="secondarySubjectName != null">secondary_subject_name, </if>
+        <if test="secondarySubjectCode != null">secondary_subject_code, </if>
+        <if test="disciplineName != null">discipline_name, </if>
+        <if test="disciplineCode != null">discipline_code, </if>
+        <if test="instituteName != null">institute_name, </if>
+        <if test="instituteCode != null">institute_code, </if>
+        <if test="learningMode != null">learning_mode, </if>
+        <if test="examMode != null">exam_mode, </if>
+        <if test="examOutlineSite != null">exam_outline_site, </if>
+        <if test="crossSubject != null">cross_subject, </if>
+        <if test="recruitmentByExam != null">recruitment_by_exam, </if>
+        <if test="recruitmentByExamInfo != null">recruitment_by_exam_info, </if>
+        <if test="recruitmentMode != null">recruitment_mode, </if>
+        <if test="remark != null">remark, </if>
+        <if test="createdAt != null">created_at, </if>
+        <if test="updatedAt != null">updated_at, </if>
+    </sql>
+
+    <sql id="selectiveValues">
+        <if test="universityId != null">#{universityId}, </if>
+        <if test="universityName != null">#{universityName}, </if>
+        <if test="masterType != null">#{masterType}, </if>
+        <if test="categoryName != null">#{categoryName}, </if>
+        <if test="categoryCode != null">#{categoryCode}, </if>
+        <if test="firstSubjectName != null">#{firstSubjectName}, </if>
+        <if test="firstSubjectCode != null">#{firstSubjectCode}, </if>
+        <if test="secondarySubjectName != null">#{secondarySubjectName}, </if>
+        <if test="secondarySubjectCode != null">#{secondarySubjectCode}, </if>
+        <if test="disciplineName != null">#{disciplineName}, </if>
+        <if test="disciplineCode != null">#{disciplineCode}, </if>
+        <if test="instituteName != null">#{instituteName}, </if>
+        <if test="instituteCode != null">#{instituteCode}, </if>
+        <if test="learningMode != null">#{learningMode}, </if>
+        <if test="examMode != null">#{examMode}, </if>
+        <if test="examOutlineSite != null">#{examOutlineSite}, </if>
+        <if test="crossSubject != null">#{crossSubject}, </if>
+        <if test="recruitmentByExam != null">#{recruitmentByExam}, </if>
+        <if test="recruitmentByExamInfo != null">#{recruitmentByExamInfo}, </if>
+        <if test="recruitmentMode != null">#{recruitmentMode}, </if>
+        <if test="remark != null">#{remark}, </if>
+        <if test="createdAt != null">#{createdAt}, </if>
+        <if test="updatedAt != null">#{updatedAt}, </if>
+    </sql>
+
+    <sql id="selectiveUpdateKeyValues">
+        <if test="universityId != null">university_id = #{universityId}, </if>
+        <if test="universityName != null">university_name = #{universityName}, </if>
+        <if test="masterType != null">master_type = #{masterType}, </if>
+        <if test="categoryName != null">category_name = #{categoryName}, </if>
+        <if test="categoryCode != null">category_code = #{categoryCode}, </if>
+        <if test="firstSubjectName != null">first_subject_name = #{firstSubjectName}, </if>
+        <if test="firstSubjectCode != null">first_subject_code = #{firstSubjectCode}, </if>
+        <if test="secondarySubjectName != null">secondary_subject_name = #{secondarySubjectName}, </if>
+        <if test="secondarySubjectCode != null">secondary_subject_code = #{secondarySubjectCode}, </if>
+        <if test="disciplineName != null">discipline_name = #{disciplineName}, </if>
+        <if test="disciplineCode != null">discipline_code = #{disciplineCode}, </if>
+        <if test="instituteName != null">institute_name = #{instituteName}, </if>
+        <if test="instituteCode != null">institute_code = #{instituteCode}, </if>
+        <if test="learningMode != null">learning_mode = #{learningMode}, </if>
+        <if test="examMode != null">exam_mode = #{examMode}, </if>
+        <if test="examOutlineSite != null">exam_outline_site = #{examOutlineSite}, </if>
+        <if test="crossSubject != null">cross_subject = #{crossSubject}, </if>
+        <if test="recruitmentByExam != null">recruitment_by_exam = #{recruitmentByExam}, </if>
+        <if test="recruitmentByExamInfo != null">recruitment_by_exam_info = #{recruitmentByExamInfo}, </if>
+        <if test="recruitmentMode != null">recruitment_mode = #{recruitmentMode}, </if>
+        <if test="remark != null">remark = #{remark}, </if>
+        <if test="createdAt != null">created_at = #{createdAt}, </if>
+        <if test="updatedAt != null">updated_at = #{updatedAt}, </if>
+    </sql>
+
+    <insert id="insertSelective" parameterType="com.boarding.base.dal.RecruitmentDO" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="tableName"></include>
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <include refid="selectiveKeys"></include>
+        </trim>
+        values
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <include refid="selectiveValues"></include>
+        </trim>
+    </insert>
+
+    <update id="updateSelectiveById" parameterType="com.boarding.base.dal.RecruitmentDO">
+        update
+        <include refid="tableName"></include>
+        set
+        <trim suffixOverrides=",">
+            <include refid="selectiveUpdateKeyValues"></include>
+        </trim>
+        where id = #{id}
+    </update>
+
+</mapper>

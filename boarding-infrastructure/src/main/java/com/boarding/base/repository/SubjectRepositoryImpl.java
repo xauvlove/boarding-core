@@ -50,11 +50,20 @@ public class SubjectRepositoryImpl implements SubjectRepository {
 
 
     @Override
-    public SubjectEntity getUnique(String subjectCode, Integer subjectType, Long parentId) {
+    public SubjectEntity getUniqueByCode(String subjectCode, Integer subjectType, Long parentId) {
         List<SubjectEntity> subjects = loadAll();
         String uniqueKey = StringUtils.joinWith("-", subjectCode, subjectType, parentId);
         Map<String, SubjectEntity> subjectMap = subjects.stream().collect(
                 Collectors.toMap(subject -> StringUtils.joinWith("-", subject.getCode(), subject.getType(), subject.getParentId()), Function.identity()));
+        return subjectMap.get(uniqueKey);
+    }
+
+    @Override
+    public SubjectEntity getUniqueByName(String subjectName, Integer subjectType, Long parentId) {
+        List<SubjectEntity> subjects = loadAll();
+        String uniqueKey = StringUtils.joinWith("-", subjectName, subjectType, parentId);
+        Map<String, SubjectEntity> subjectMap = subjects.stream().collect(
+                Collectors.toMap(subject -> StringUtils.joinWith("-", subject.getName(), subject.getType(), subject.getParentId()), Function.identity()));
         return subjectMap.get(uniqueKey);
     }
 

@@ -77,16 +77,6 @@ public class RecruitmentDO {
     private String disciplineCode;
 
     /**
-     * 研究方向名称
-     */
-    private String directionName;
-
-    /**
-     * 研究方向编号
-     */
-    private String directionCode;
-
-    /**
      * 研究所名称
      */
     private String instituteName;

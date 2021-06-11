@@ -7,6 +7,7 @@ import com.boarding.base.enums.ExamModeEnum;
 import com.boarding.base.enums.LearningModeEnum;
 import com.boarding.base.enums.MasterTypeEnum;
 import com.boarding.base.enums.SubjectTypeEnum;
+import com.boarding.base.repo.RecruitmentRepository;
 import com.boarding.base.repo.SubjectRepository;
 import com.boarding.cons.BaseConstants;
 import com.boarding.api.service.UniversityService;
@@ -21,6 +22,7 @@ import lombok.Data;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.io.BufferedReader;
@@ -45,10 +47,15 @@ public class UniversityServiceImpl implements UniversityService {
     @Resource
     private SubjectRepository subjectRepository;
 
+    @Resource
+    private RecruitmentRepository recruitmentRepository;
+
     @Override
     public void write() {
         try {
-            File dir = new File("D:\\dev\\projects\\doing\\数据文件\\_2021\\大学研究生招生情况-学硕");
+            //File dir = new File("D:\\dev\\projects\\doing\\数据文件\\_2021\\大学研究生招生情况-学硕");
+            //File dir = new File("D:\\dev\\projects\\doing\\数据文件\\_2021\\大学研究生招生情况-专硕");
+            File dir = new File("");
             File[] files = dir.listFiles();
             assert files != null;
             for (File file : files) {
@@ -79,20 +86,23 @@ public class UniversityServiceImpl implements UniversityService {
                     }
                     recruitmentEntity.setMasterType(masterType);
 
-                    SubjectEntity categoryByCode = subjectRepository.getUnique(detail.getFirstSubjectCode(), SubjectTypeEnum.CATEGORY.getType(), 0L);
+                    SubjectEntity categoryByCode = subjectRepository.getUniqueByCode(detail.getFirstSubjectCode(), SubjectTypeEnum.CATEGORY.getType(), 0L);
                     recruitmentEntity.setCategoryCode(categoryByCode.getCode());
                     recruitmentEntity.setCategoryName(categoryByCode.getName());
 
-                    String secondarySubjectCode = detail.getSecondarySubjectCode();
-                    SubjectEntity firstSubject = subjectRepository.getUnique(secondarySubjectCode, SubjectTypeEnum.FIRST_SUBJECT.getType(), categoryByCode.getId());
+                    String firstSubjectCode = detail.getSecondarySubjectCode();
+
+                    SubjectEntity firstSubject = subjectRepository.getUniqueByCode(firstSubjectCode, SubjectTypeEnum.FIRST_SUBJECT.getType(), categoryByCode.getId());
 
                     recruitmentEntity.setFirstSubjectCode(firstSubject.getCode());
                     recruitmentEntity.setFirstSubjectName(firstSubject.getName());
-                    recruitmentEntity.setDisciplineCode(detail.getDisciplineCode());
-                    recruitmentEntity.setDisciplineName(detail.getDisciplineName());
 
-                    recruitmentEntity.setDirectionCode(detail.getDirectionCode());
-                    recruitmentEntity.setDirectionName(detail.getDirectionName());
+                    //SubjectEntity secondarySubject = subjectRepository.getUniqueByCode(firstSubjectCode, SubjectTypeEnum.FIRST_SUBJECT.getType(), categoryByCode.getId());
+                    recruitmentEntity.setSecondarySubjectCode(detail.getDisciplineCode());
+                    recruitmentEntity.setSecondarySubjectName(detail.getDisciplineName());
+
+                    recruitmentEntity.setDisciplineCode(detail.getDirectionCode());
+                    recruitmentEntity.setDisciplineName(detail.getDirectionName());
 
                     recruitmentEntity.setInstituteCode(detail.getInstituteCode());
                     recruitmentEntity.setInstituteName(detail.getInstituteName());
@@ -136,8 +146,11 @@ public class UniversityServiceImpl implements UniversityService {
 
                     recruitmentEntity.setRecruitmentMode(recruitmentMode);
                     recruitmentEntity.setRemark(detail.getRemark());
-
-                    System.out.println();
+                    try {
+                        recruitmentRepository.insertSelective(recruitmentEntity);
+                    } catch (DuplicateKeyException e) {
+                        System.out.println();
+                    }
                 }
             }
         } catch (Exception e) {
