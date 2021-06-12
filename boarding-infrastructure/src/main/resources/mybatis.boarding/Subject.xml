@@ -53,9 +53,6 @@
             <include refid="selectiveValues"></include>
         </trim>
     </insert>
-    <insert id="batchInsert">
-
-    </insert>
 
     <update id="updateSelectiveById" parameterType="com.boarding.base.dal.SubjectDO">
         update

@@ -18,8 +18,6 @@ public interface UniversityRepository {
 
     UniversityEntity getByUniversityName(String universityName);
 
-    Integer batchInsert(List<UniversityEntity> universities);
-
     Long insertSelective(UniversityEntity university);
 
     Integer updateSelective(UniversityEntity university);

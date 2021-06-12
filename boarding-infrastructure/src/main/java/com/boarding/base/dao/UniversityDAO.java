@@ -18,6 +18,4 @@ public interface UniversityDAO {
     Integer updateSelectiveById(UniversityDO universityDO);
 
     List<UniversityDO> limitedQuery(@Param("offset") Integer startId, @Param("limit") Integer limit);
-
-    Integer batchInsert(List<UniversityDO> collect);
 }

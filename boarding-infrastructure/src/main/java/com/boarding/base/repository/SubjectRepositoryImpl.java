@@ -68,12 +68,6 @@ public class SubjectRepositoryImpl implements SubjectRepository {
     }
 
     @Override
-    public Integer batchInsert(List<SubjectEntity> universities) {
-        List<SubjectDO> collect = universities.stream().map(this::trans2SubjectDO).collect(Collectors.toList());
-        return subjectDAO.batchInsert(collect);
-    }
-
-    @Override
     public SubjectTreeEntity queryAndBuildTree() {
 
         // 创建根节点

@@ -14,8 +14,6 @@ import java.util.List;
  */
 public interface SubjectRepository extends BaseRepository {
 
-    Integer batchInsert(List<SubjectEntity> subjects);
-
     Long insertSelective(SubjectEntity subject);
 
     Integer updateSelective(SubjectEntity subject);

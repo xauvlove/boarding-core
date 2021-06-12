@@ -96,16 +96,6 @@
             <include refid="selectiveValues"></include>
         </trim>
     </insert>
-    <insert id="batchInsert" parameterType="com.boarding.base.dal.UniversityDO">
-        insert into
-        <include refid="tableName"></include>
-        (<include refid="efficientColumn"></include>)
-        values
-        <foreach collection="dos" index="index" item="" separator=",">
-            (#{d.}, #{d.}, #{d.}, #{d.}, #{d.}, #{d.}, #{d.},
-            #{d.}, #{d.}, #{d.}, #{d.}, #{d.}, )
-        </foreach>
-    </insert>
 
     <update id="updateSelectiveById" parameterType="com.boarding.base.dal.UniversityDO">
         update
