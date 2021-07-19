@@ -9,6 +9,8 @@ ___  __)/___)/  __ _____  _)/|  |   _______  __ ____
       \/     \/                                    \/
 */
 
+import com.boarding.response.SubjectResponse;
+
 /**
  * @Date 2021/06/07 22:45
  * @Author ling yue
@@ -17,5 +19,5 @@ ___  __)/___)/  __ _____  _)/|  |   _______  __ ____
  */
 public interface SubjectService {
 
-    String query();
+    SubjectResponse query();
 }

@@ -159,6 +159,7 @@ public class UniversityServiceImpl implements UniversityService {
         }
     }
 
+    @Override
     public UniversityResponse query(UniversityRequest universityRequest) {
         UniversityResponse response = new UniversityResponse();
         List<UniversityEntity> universities = universityRepository.loadAll();

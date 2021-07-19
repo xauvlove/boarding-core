@@ -10,6 +10,8 @@ ___  __)/___)/  __ _____  _)/|  |   _______  __ ____
 */
 
 import com.boarding.api.service.SubjectService;
+import com.boarding.response.SubjectResponse;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +32,7 @@ public class SubjectController {
     private SubjectService subjectService;
 
     @GetMapping("/tree")
-    public String get() {
+    public SubjectResponse get() {
         return subjectService.query();
     }
 }
